@@ -3,117 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Be My Valentine?</title>
+    <title>Hey Cutiepie</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@500&display=swap" rel="stylesheet">
     <style>
         body {
+            margin: 0;
+            height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #ffe6e6;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fce4ec 0%, #ffe0e0 100%);
+            font-family: 'Quicksand', sans-serif;
             overflow: hidden;
         }
 
+        /* The glassmorphism card from your image */
+        .card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            text-align: center;
+            border: 8px solid white;
+            max-width: 400px;
+            z-index: 10;
+        }
+
         h1 {
-            color: #ff4d6d;
-            font-size: 3rem;
-            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            color: #7d5a5a;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
         }
 
-        .container {
-            text-align: center;
+        p {
+            color: #a38d8d;
+            font-size: 1.1rem;
+            line-height: 1.5;
         }
 
-        .buttons {
-            margin-top: 20px;
-            position: relative;
-            height: 100px;
-            width: 300px;
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            height: 60px;
         }
 
         button {
-            padding: 15px 30px;
-            font-size: 1.2rem;
+            padding: 12px 35px;
+            border-radius: 30px;
             border: none;
-            border-radius: 50px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: bold;
             cursor: pointer;
-            transition: transform 0.2s;
-            position: absolute;
+            transition: all 0.3s ease;
+            font-size: 1rem;
         }
 
         #yesBtn {
-            background-color: #ff4d6d;
-            color: white;
-            left: 20px;
+            background-color: #eec1c1;
+            color: #7d5a5a;
+            box-shadow: 0 4px 15px rgba(238, 193, 193, 0.4);
         }
 
+        #yesBtn:hover {
+            transform: scale(1.1);
+            background-color: #f8bbd0;
+        }
+
+        /* The "Untouchable" No button */
         #noBtn {
-            background-color: #ffffff;
-            color: #ff4d6d;
-            border: 2px solid #ff4d6d;
-            right: 20px;
-            transition: all 0.3s ease;
+            background-color: white;
+            color: #eec1c1;
+            border: 2px solid #eec1c1;
+            position: absolute; /* Allows it to float everywhere */
+            transition: 0.1s linear;
         }
 
-        .celebration {
+        .celebration-screen {
             display: none;
-            font-size: 2rem;
-            color: #ff4d6d;
-            animation: heartBeat 1.5s infinite;
-        }
-
-        @keyframes heartBeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
         }
     </style>
 </head>
 <body>
 
-    <div id="mainContent" class="container">
-        <h1 id="question">Will you be my Valentine? ❤️</h1>
-        <div class="buttons">
-            <button id="yesBtn" onclick="celebrate()">Yes</button>
-            <button id="noBtn" onmouseover="moveButton()" onclick="transformNo()">No</button>
+    <div class="card" id="mainCard">
+        <img src="https://media.tenor.com/97mX7A_l4mUAAAAi/cute-sad.gif" alt="Cute bunny" style="width: 120px; margin-bottom: 20px;">
+        <h1>Hey Cutiepie</h1>
+        <p>Can we talk for a moment? There's something important I want to tell you.</p>
+        <p><strong>Will you be my Valentine?</strong></p>
+        
+        <div class="btn-container">
+            <button id="yesBtn" onclick="showLove()">Yes! ❤️</button>
+            <button id="noBtn" onmouseover="flyAway()">No</button>
         </div>
     </div>
 
-    <div id="celebration" class="celebration">
-        <h1>Yay! See you on the 14th! 🥰🌹</h1>
+    <div class="card celebration-screen" id="happyCard">
+        <img src="https://media.tenor.com/X-H_M_p_Y68AAAAi/cute-love.gif" alt="Happy bunny" style="width: 120px; margin-bottom: 20px;">
+        <h1>Yay! 🥰</h1>
+        <p>I knew you'd say yes! <br> Get ready for the best date ever!</p>
     </div>
 
     <script>
         const noBtn = document.getElementById('noBtn');
-        const yesBtn = document.getElementById('yesBtn');
-        const mainContent = document.getElementById('mainContent');
-        const celebration = document.getElementById('celebration');
+        const mainCard = document.getElementById('mainCard');
+        const happyCard = document.getElementById('happyCard');
 
-        // This function moves the button when hovered
-        function moveButton() {
+        function flyAway() {
+            // Calculates random position within the viewport
+            // Subtracts button size so it doesn't go off-screen
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
             
-            noBtn.style.position = 'absolute';
-            noBtn.style.left = `${x}px`;
-            noBtn.style.top = `${y}px`;
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
         }
 
-        // This function triggers if they actually manage to click "No"
-        function transformNo() {
-            noBtn.innerText = "Yes! ❤️";
-            noBtn.style.backgroundColor = "#ff4d6d";
-            noBtn.style.color = "white";
-            setTimeout(celebrate, 500);
+        function showLove() {
+            mainCard.style.display = 'none';
+            happyCard.style.display = 'block';
         }
 
-        function celebrate() {
-            mainContent.style.display = 'none';
-            celebration.style.display = 'block';
-        }
+        // Initially place the No button near the Yes button
+        window.onload = () => {
+            noBtn.style.left = (window.innerWidth / 2 + 20) + 'px';
+            noBtn.style.top = (window.innerHeight / 2 + 80) + 'px';
+        };
     </script>
 </body>
 </html>
