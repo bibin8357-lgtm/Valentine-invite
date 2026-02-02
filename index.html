@@ -3,192 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine Special Project</title>
+    <title>Special Moments</title>
     <style>
-        :root {
-            --primary-pink: #ff4d6d;
-            --dark-red: #590d22;
-            --bg-dark: #0f0101;
-        }
-
         body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-dark);
-            color: white;
+            background-color: #fce4ec;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden; /* Prevents scrolling during transitions */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
+            overflow: hidden;
         }
 
-        /* --- Floating Hearts Animation --- */
-        .heart-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            50% { opacity: 0.8; }
-            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
-        }
-
-        .heart {
-            position: absolute;
-            color: var(--primary-pink);
-            animation: float 5s linear infinite;
-        }
-
-        /* --- Scene Transitions --- */
-        .scene {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-            pointer-events: none;
-            z-index: 1;
+            max-width: 400px;
+            width: 90%;
+            transition: all 0.5s ease;
         }
 
-        .scene.active {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: all;
+        .header-text {
+            color: #d32f2f;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
 
-        /* --- Typography & UI --- */
-        h1 {
-            font-size: 2.5rem;
-            color: var(--primary-pink);
-            text-shadow: 0 0 15px var(--primary-pink);
-            margin: 10px 0;
+        .sub-text {
+            color: #757575;
+            font-size: 14px;
+            margin-bottom: 30px;
         }
 
-        p { font-size: 1.1rem; opacity: 0.9; max-width: 80%; }
+        .illustration {
+            width: 150px;
+            margin-bottom: 20px;
+        }
 
-        .btn {
-            margin-top: 30px;
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            position: relative;
+            height: 50px;
+        }
+
+        button {
             padding: 12px 25px;
-            background: var(--primary-pink);
             border: none;
-            border-radius: 25px;
-            color: white;
+            border-radius: 12px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 0 10px var(--primary-pink);
             transition: transform 0.2s;
         }
 
-        .btn:hover { transform: scale(1.1); }
-
-        /* --- Photo Gallery --- */
-        .gallery { display: flex; gap: 15px; margin-top: 20px; }
-        .photo-card {
-            width: 120px;
-            height: 180px;
-            background: #222;
-            border: 2px solid var(--primary-pink);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .photo-card img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* --- Interactive Gift Box --- */
-        .gift-container {
-            cursor: pointer;
-            position: relative;
-            width: 100px;
-            height: 100px;
-            background: #800f2f;
-            border-radius: 5px;
-            transition: transform 0.3s;
+        #yesBtn {
+            background-color: #e91e63;
+            color: white;
+            font-size: 16px;
         }
 
-        .gift-lid {
+        #noBtn {
+            background-color: #f5f5f5;
+            color: #616161;
             position: absolute;
-            top: -10px;
-            width: 110px;
-            left: -5px;
-            height: 20px;
-            background: #ff4d6d;
-            border-radius: 3px;
-            transition: transform 0.5s;
+            white-space: nowrap;
         }
 
-        .gift-container:hover .gift-lid { transform: translateY(-15px) rotate(-5deg); }
+        /* Success State */
+        .hidden { display: none; }
+        
+        .yay-img {
+            width: 200px;
+            border-radius: 50%;
+            border: 5px solid #e91e63;
+        }
     </style>
 </head>
 <body>
 
-    <div class="heart-bg" id="heart-container"></div>
-
-    <section class="scene active" id="s1">
-        <p>Even when miles apart...</p>
-        <h1>Happy Valentine's Day <br> My Love</h1>
-        <button class="btn" onclick="goTo(2)">Click to Start ❤️</button>
-    </section>
-
-    <section class="scene" id="s2">
-        <h1>Our Memories</h1>
-        <div class="gallery">
-            <div class="photo-card"><img src="https://via.placeholder.com/120x180" alt="Pic 1"></div>
-            <div class="photo-card"><img src="https://via.placeholder.com/120x180" alt="Pic 2"></div>
-            <div class="photo-card"><img src="https://via.placeholder.com/120x180" alt="Pic 3"></div>
+    <div class="card" id="mainCard">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJteGZ6bm9ueGZ6bm9ueGZ6bm9ueGZ6bm9ueGZ6bm9ueGZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute character" class="illustration">
+        <div class="header-text">Will you be my <span style="color: #e91e63;">Valentine?</span></div>
+        <div class="sub-text">I've been thinking of asking you this for a while...</div>
+        
+        <div class="btn-container">
+            <button id="yesBtn" onclick="celebrate()">Yes! ❤️</button>
+            <button id="noBtn" onmouseover="moveNoButton()" onclick="moveNoButton()">No</button>
         </div>
-        <button class="btn" onclick="goTo(3)">Next ✨</button>
-    </section>
+    </div>
 
-    <section class="scene" id="s3">
-        <div class="gift-container" onclick="revealSurprise()">
-            <div class="gift-lid"></div>
-        </div>
-        <div id="surprise-msg" style="display:none; margin-top:20px;">
-            <p>"No matter how far you are... you are always with me."</p>
-            <h1>I LOVE YOU!</h1>
-        </div>
-    </section>
+    <div class="card hidden" id="successCard">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJteGZ6bm9ueGZ6bm9ueGZ6bm9ueGZ6bm9ueGZ6bm9ueGZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/26BRv0ThflsHCqfJA/giphy.gif" class="yay-img">
+        <div class="header-text" style="font-size: 40px; margin-top: 20px;">Yay!!! ❤️</div>
+        <div class="sub-text">I knew you'd say yes! I love you!</div>
+    </div>
 
     <script>
-        // 1. Scene Controller
-        function goTo(sceneNum) {
-            document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
-            document.getElementById('s' + sceneNum).classList.add('active');
-        }
+        const noBtn = document.getElementById('noBtn');
+        const phrases = [
+            "No",
+            "Are you sure?",
+            "Really sure?",
+            "Think again!",
+            "Last chance!",
+            "Surely not?",
+            "You might regret this!",
+            "Give it another thought!",
+            "This could be a mistake!",
+            "Change of heart?"
+        ];
+        
+        let phraseIndex = 0;
 
-        // 2. Gift Reveal logic
-        function revealSurprise() {
-            document.querySelector('.gift-container').style.display = 'none';
-            document.getElementById('surprise-msg').style.display = 'block';
-        }
+        function moveNoButton() {
+            // Change the text based on your images
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            noBtn.innerText = phrases[phraseIndex];
 
-        // 3. Generate Floating Hearts
-        function createHeart() {
-            const container = document.getElementById('heart-container');
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            heart.style.fontSize = (Math.random() * 10 + 10) + 'px';
+            // Calculate random position
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+
+            // Move the button
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
             
-            container.appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
+            // Make the Yes button grow slightly each time she tries to click No
+            const yesBtn = document.getElementById('yesBtn');
+            const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+            yesBtn.style.fontSize = (currentSize + 2) + 'px';
+            yesBtn.style.padding = (currentSize + 5) + 'px ' + (currentSize * 2) + 'px';
         }
-        setInterval(createHeart, 300);
+
+        function celebrate() {
+            document.getElementById('mainCard').classList.add('hidden');
+            document.getElementById('successCard').classList.remove('hidden');
+            
+            // Optional: Simple confetti effect using console or alert
+            console.log("Success! Happy Valentine's Day!");
+        }
     </script>
 </body>
 </html>
