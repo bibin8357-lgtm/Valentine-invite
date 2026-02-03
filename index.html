@@ -23,8 +23,9 @@
             padding: 50px;
             border-radius: 30px;
             box-shadow: 0 10px 30px rgba(255, 182, 193, 0.4);
-            max-width: 500px;
+            max-width: 450px;
             width: 90%;
+            position: relative;
         }
 
         .name-header {
@@ -37,29 +38,32 @@
         h1 {
             color: #d63384;
             font-family: 'Pacifico', cursive;
-            font-size: 2rem;
-            margin-bottom: 40px;
+            font-size: 1.8rem;
+            margin-bottom: 50px;
         }
 
-        .buttons {
+        .button-wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px; /* This keeps them side-by-side */
+            height: 100px; /* Space for the growing Yes button */
+            position: relative;
         }
 
         #yesBtn {
             background-color: #ff4d6d;
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: 15px 35px;
             font-size: 1.2rem;
             border-radius: 50px;
             cursor: pointer;
             font-family: 'Quicksand', sans-serif;
             font-weight: bold;
-            transition: transform 0.2s ease;
+            transition: transform 0.3s ease;
             box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+            position: relative;
+            z-index: 1; /* Under the No button */
         }
 
         #noBtn {
@@ -67,11 +71,14 @@
             color: #d63384;
             border: none;
             padding: 15px 30px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             border-radius: 50px;
             cursor: pointer;
             font-weight: bold;
             transition: all 0.2s ease;
+            position: absolute;
+            z-index: 2; /* On top of the Yes button */
+            margin-left: 140px; /* Initial side-by-side position */
         }
 
         .hidden { display: none; }
@@ -82,7 +89,7 @@
     <div class="container" id="mainContainer">
         <div class="name-header">Hey Archana Mathu</div>
         <h1>Will you be my Valentine?</h1>
-        <div class="buttons">
+        <div class="button-wrapper">
             <button id="yesBtn">Yes</button>
             <button id="noBtn">No</button>
         </div>
@@ -108,26 +115,30 @@
             "Think again!",
             "Archana, please?",
             "Last chance!",
+            "Surely not?",
             "You're breaking my heart ;(",
-            "Don't do this!",
             "I'm gonna cry...",
             "Just click Yes!",
-            "You're so mean!"
+            "Fine... click Yes!"
         ];
 
         noBtn.addEventListener('click', () => {
             noCount++;
             
-            // Change No button text
+            // 1. Change text
             if (noCount < phrases.length) {
                 noBtn.innerText = phrases[noCount];
-            } else {
-                noBtn.innerText = "Okay, I give up...";
             }
 
-            // Increase Yes button size
-            yesScale += 0.5;
+            // 2. Increase Yes button size
+            yesScale += 0.6; 
             yesBtn.style.transform = `scale(${yesScale})`;
+
+            // 3. Move the No button so it stays visible as Yes grows
+            // This moves it slightly each time she tries to click No
+            const xMove = (Math.random() - 0.5) * 100;
+            const yMove = (Math.random() - 0.5) * 100;
+            noBtn.style.transform = `translate(${xMove}px, ${yMove}px)`;
         });
 
         yesBtn.addEventListener('click', () => {
