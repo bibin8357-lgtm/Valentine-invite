@@ -3,184 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Archana Mathu</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    <title>I'm Sorry!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+    
     <style>
         body {
-            background-color: #fff0f3;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
+            /* Soft pastel gradient background */
+            background: linear-gradient(135deg, #fffcf0 0%, #e6e9f8 100%);
             font-family: 'Quicksand', sans-serif;
-            overflow: hidden;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            width: 320px;
+            border: 8px solid white;
+        }
+
+        .inner-box {
+            background: linear-gradient(to bottom, #ffeef1, #ffffff);
+            border-radius: 30px;
+            padding: 20px;
+            margin-bottom: 20px;
             position: relative;
         }
 
-        /* Heart Animation Styles */
-        .heart {
-            position: absolute;
-            color: #ff4d6d;
-            font-size: 20px;
-            user-select: none;
-            pointer-events: none;
-            animation: float 4s linear infinite;
-            opacity: 0;
-            z-index: 1;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-        }
-
-        .container {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.9); /* Slight transparency for hearts */
-            padding: 50px;
-            border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.4);
-            max-width: 600px;
-            width: 90%;
-            transition: all 0.3s ease;
-            z-index: 10; /* Keep buttons above hearts */
-        }
-
-        .name-header {
+        /* 2. THE CUSTOM FONT: Applied here */
+        .script-font {
             font-family: 'Dancing Script', cursive;
-            color: #ff4d6d;
-            font-size: 2.8rem;
-            margin-bottom: 10px;
+            font-size: 32px;
+            color: #5d4740;
+            margin: 10px 0 5px 0;
         }
 
-        h1 {
-            color: #d63384;
-            font-family: 'Pacifico', cursive;
-            font-size: 2rem;
-            margin-bottom: 40px;
-        }
-
-        .buttons-flex {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            min-height: 150px; 
-        }
-
-        #yesBtn {
-            background-color: #ff4d6d;
-            color: white;
-            border: none;
-            padding: 15px 35px;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Quicksand', sans-serif;
-            font-weight: bold;
-            transition: transform 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
-            white-space: nowrap;
-        }
-
-        #noBtn {
-            background-color: #ffb3c1;
-            color: #d63384;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-        }
-
-        .hidden { display: none; }
-
-        #celebration h1 {
-            font-size: 1.8rem;
-            color: #ff0054;
+        .description {
+            font-size: 16px;
+            color: #7a6a64;
             line-height: 1.4;
+            margin-bottom: 25px;
+            padding: 0 10px;
+        }
+
+        .btn {
+            background-color: #e2c2c9;
+            color: #5d4740;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 auto;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .character-img {
+            width: 100px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container" id="mainContainer">
-        <div class="name-header">Hey Archana Mathu</div>
-        <h1>Will you be my Valentine?</h1>
-        <div class="buttons-flex">
-            <button id="yesBtn">Yes</button>
-            <button id="noBtn">No</button>
+    <div class="card">
+        <div class="inner-box">
+            <img src="https://i.pinimg.com/originals/9e/f3/9a/9ef39a61578b87127117e33796f63f14.gif" alt="Cute character" class="character-img">
+            <div class="script-font">Hey Cutiepie</div>
         </div>
+
+        <p class="description">
+            Can we talk for a moment? There’s something important I want to tell you.
+        </p>
+
+        <button class="btn">
+            Continue <span>❤</span>
+        </button>
     </div>
 
-    <div class="container hidden" id="celebration">
-        <div class="name-header">I Love Youuhh archh! ❤️</div>
-        <h1>Thank Youhh for accepting Ummaahhh ummaahh ummmaahhh love youuu And happy Valentine's Dayy archanneee!</h1>
-    </div>
-
-    <script>
-        // Floating Hearts Logic
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
-            document.body.appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 5000);
-        }
-        setInterval(createHeart, 300);
-
-        const yesBtn = document.getElementById('yesBtn');
-        const noBtn = document.getElementById('noBtn');
-        const mainContainer = document.getElementById('mainContainer');
-        const celebration = document.getElementById('celebration');
-
-        let noCount = 0;
-        let yesScale = 1;
-
-        const phrases = [
-            "No",
-            "ponnn allee",
-            "Are you really sure?",
-            "Muttt allee",
-            "Chakara Mutt allee",
-            "Think again!",
-            "Archane, please?",
-            "Last chance!",
-            "You're breaking my heart ;(",
-            "Don't be so cold!",
-            "I'm gonna cry...",
-            "Just click Yes!",
-            "Change your mind?"
-        ];
-
-        noBtn.addEventListener('click', () => {
-            noCount++;
-            
-            if (noCount < phrases.length) {
-                noBtn.innerText = phrases[noCount];
-            } else {
-                noBtn.innerText = "Please say Yes!";
-            }
-
-            yesScale += 0.5; 
-            yesBtn.style.transform = `scale(${yesScale})`;
-
-            let offset = noCount * 20;
-            noBtn.style.marginLeft = `${offset}px`;
-        });
-
-        yesBtn.addEventListener('click', () => {
-            mainContainer.classList.add('hidden');
-            celebration.classList.remove('hidden');
-            document.body.style.backgroundColor = "#ffccd5";
-        });
-    </script>
 </body>
 </html>
